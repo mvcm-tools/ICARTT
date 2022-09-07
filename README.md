@@ -14,7 +14,7 @@ icartt-reader.py reads one or more input ICARTT files and merges them, then writ
 <br>
  <p>
 For merging all ALPACA ICARTT files:
-Usage: ./icartt-reader 'input_directory/*.ict' 'output_filename.txt'
+Usage: ./alpaca-icartt-merge.py 'input_directory/*.ict' 'output_filename.txt'
 </p>
 <br>
 - Need to have the python ICARTT package v2.0.0 installed (https://pypi.org/project/icartt/).
