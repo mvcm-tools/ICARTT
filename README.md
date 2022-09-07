@@ -17,7 +17,7 @@ For merging all ALPACA ICARTT files:
 Usage: ./icartt-reader 'input_directory/*.ict' 'output_filename.txt'
 </p>
 <br>
-Need to have the python ICARTT package v2.0.0 installed (https://pypi.org/project/icartt/).
+- Need to have the python ICARTT package v2.0.0 installed (https://pypi.org/project/icartt/).
 <br>
-Also need to have the spreadsheet "icartt-current-version.csv" containing variables: PI	site, instrument, icartt_version, file_extension, data_directory, data_description, notes.
+- Also need to have the spreadsheet "icartt-current-version.csv" containing variables: PI	site, instrument, icartt_version, file_extension, data_directory, data_description, notes.
 </p>
