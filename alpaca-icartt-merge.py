@@ -7,6 +7,7 @@ import glob
 import sys
 import logging
 import warnings
+import re
 
 # open file to log warnings
 logging.basicConfig(filename="icartt-warnings.txt",level=logging.DEBUG)
@@ -110,7 +111,10 @@ def icartt_convert(input_file, site_name, inst, start_stop):
                     print('No time axis dropped')
                     pass
     
-    df.index.rename('datetime_UTC', inplace=True)
+    # make datetime index AKST
+    df.index = df.index - pd.Timedelta('9H')
+    df.index.rename('datetime_AKST', inplace=True)
+
     var = [x for x in df.columns]
 
 # add group and site name to column headers
@@ -131,26 +135,28 @@ def icartt_convert(input_file, site_name, inst, start_stop):
         elif inst in df.columns[xi] and site_name in df.columns[xi]:
             pass
         # if only the instrument name is in the column name, add site name and rearrange to be in site, instruemnt, variable order
-        elif inst in df.columns[xi]:
-            try:
-                col = df.columns[xi].replace('_'+inst+'_', '')
-            except:
-                try:
-                    col = df.columns[xi].replace('_'+inst, '')
-                except:
-                    col = df.columns[xi].replace(inst+'_', '')
-            newname = site_name+'_'+inst+'_'+col
+        elif inst in df.columns[xi] and site_name not in df.columns[xi]:
+            print('rearranging column name string')
+            col = []
+            if '_'+inst+'_' in df.columns[xi]:
+                col.append(re.sub('_'+inst+'_', '', df.columns[xi]))
+            elif '_'+inst in df.columns[xi]:
+                col.append(re.sub('_'+inst, '', df.columns[xi]))
+            else:
+                col.append(re.sub(inst+'_', '', df.columns[xi]))
+            newname = site_name+'_'+inst+'_'+col[0]
             df.rename(columns={df.columns[xi]:newname}, inplace=True)
         # if only the site name is in the column name, add instrument name and rearrange to be in site, instruemnt, variable order
-        elif site_name in df.columns[xi]:
-            try:
-                col = df.columns[xi].replace('_'+site_name+'_'), ''
-            except:
-                try:
-                    col = df.columns[xi].replace('_'+site_name, '')
-                except:
-                    col = df.columns[xi].replace(site_name+'_', '')
-            newname = site_name+'_'+inst+'_'+col
+        elif site_name in df.columns[xi] and inst not in df.columns[xi]:
+            print('rearranging column name string')
+            col = []
+            if '_'+site_name+'_' in df.columns[xi]:
+                col.append(re.sub('_'+site_name+'_', '', df.columns[xi]))
+            elif '_'+site_name in df.columns[xi]:
+                col.append(re.sub('_'+site_name, '', df.columns[xi]))
+            else:
+                col.append(re.sub(site_name+'_', '', df.columns[xi]))
+            newname = site_name+'_'+inst+'_'+col[0]
             df.rename(columns={df.columns[xi]:newname}, inplace=True)
         # if column name does not have an instrument or site name already, add both instrument and sitename to column name in site, instruemnt, variable order
         else:
@@ -254,7 +260,7 @@ df_merge = df_list[0].copy(deep=False)
 for xi in range(1, len(df_list)):
     df_merge = df_merge.merge(df_list[xi], how="outer", left_index=True, right_index=True)
 
-df_merge.drop(['datetime_string_UTC', 'datetime_string_AKST', 'CTC_AERIS_local_fractional_day_of_year_Mid', 'CTC_COFFEE_local_fractional_day_of_year_Mid'], axis=1, inplace=True)
+df_merge.drop(['datetime_string_UTC', 'datetime_string_AKST', 'CTC_AERIS_local_fractional_day_of_year_Mid', 'CTC_COFFEE_local_fractional_day_of_year_Mid', 'fractional_day_of_year_AKST'], axis=1, inplace=True)
 
 # get hourly avg data
 df_merge_hr = df_merge.resample('1H').mean()
