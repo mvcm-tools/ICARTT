@@ -11,13 +11,13 @@ import warnings
 # open file to log warnings
 logging.basicConfig(filename="icartt-warnings.txt",level=logging.DEBUG)
 logging.captureWarnings(True)
+
 warning_file = open("icartt-warnings.txt", "w")
 
 # function to log warnings
 def mywarning(message, category, filename, lineno, line=None):
     warning_file.write(warnings.formatwarning(message, category, filename, lineno, line))
 
-#warnings.showwarning = mywarning
 
 # show usage of script
 print('Usage: '+str(sys.argv[0])+' icartt_directory/*.ict output_filename_5min.txt output_filename_hr.txt')
@@ -45,8 +45,9 @@ def icartt_convert(input_file, site_name, inst, start_stop):
     print('################')
     print('')
 
+    # open ICARTT dataset and write warnings to file
+    logging.info('Warnings for file "'+input_file+'":\n\n')
     ict = icartt.Dataset(input_file)
-    warning_file.write('Warnings for file "'+fp_in+'":\n\n')
 
 # get column names from the ICARTT dataset object
     var = [x for x in ict.variables.keys()]
