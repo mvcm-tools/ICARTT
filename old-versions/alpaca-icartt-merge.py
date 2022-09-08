@@ -274,26 +274,3 @@ df_merge.to_csv(fp_out, sep = '\t', na_rep = 'NaN', float_format='%.4f')
 df_merge_hr.to_csv(fp_out_hr, sep = '\t', na_rep = 'NaN', float_format='%.4f')
 
 print('File merged, wrote data to files "'+fp_out+'" and "'+fp_out_hr)
-
-
-##################################################################
-############ check merged file against original files ############
-##################################################################
-# uncomment this code if you want to double check the merged data against the original data
-
-#import matplotlib.pyplot as plt
-
-#ict_vars = ['ADEC_advisory_flag_Fairbanks', 'NH3_ppb', 'NH3_ppb', 'H2CO_ppb', 'CO_ppm', 'SO4', 'BC_smth', 'CTC_temp_6m_C', 'CH2O_COFFEE', 'CH2O_AERIS']
-#df_vars = ['ADEC_advisory_flag_Fairbanks', 'House_indoor_PicarroG2103_NH3_ppb', 'House_outdoor_PicarroG2103_NH3_ppb', 'House_PicarroG2307_H2CO_ppb', 'House_PicarroG2401_CO_ppm', 'House_AMS_SO4', 'House_AE33_BC_smth', 'CTC_temp_6m_C', 'CTC_COFFEE_CH2O_COFFEE', 'CTC_AERIS_CH2O_AERIS']
-
-#print(len(ict_vars))
-#print(len(df_vars))
-#print(len(df_list))
-
-
-#for xi in range(0, len(ict_vars)):
-#        plt.plot(df_list[xi][df_vars[xi]].dropna(), color='red')
-#        plt.plot(df_merge[df_vars[xi]].dropna(), color='black', linestyle='dashed')
-#        plt.ylabel(df_vars[xi])
-#        plt.xlabel('Datetime (UTC)')
-#        plt.show()
