@@ -12,7 +12,7 @@ ICARTT is a NASA file format as described in detail here:
 <br>
 For merging all ALPACA ICARTT files: 
 <br>
-Usage: ./alpaca-icartt-merge.py 'input_directory/*.ict' 'output_filename_5min.txt' 'output_filename_1hr.txt'
+Usage: ./alpaca-icartt-merge-v1-1.py 'input_directory/*.ict' 'output_filename_5min.txt' 'output_filename_hr.txt'
 </p>
 
 <p>
