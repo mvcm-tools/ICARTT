@@ -281,6 +281,9 @@ for xi in range(1, len(df_list)):
     df_merge = df_merge.merge(df_list[xi], how="outer", left_index=True, right_index=True)
 
 
+# cut to 2022-01-01 AKST
+df_merge = df_merge['2022-01-01':]
+
 # get hourly avg data
 df_merge_hr = df_merge.resample('1H').mean()
 
