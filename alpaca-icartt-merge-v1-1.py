@@ -212,7 +212,7 @@ df_list = []
 aeris = []
 
 for xi in range(0, len(vers)):
-    filebase = vers['file_name'][xi]
+    filebase = vers['file_base'][xi]
     vers_num = vers['icartt_version'][xi]
     site = str(vers['site'][xi])
     instrument = str(vers['instrument'][xi])
