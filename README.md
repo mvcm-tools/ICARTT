@@ -12,13 +12,14 @@ ICARTT is a NASA file format as described in detail here:
 <br>
 For merging all ALPACA ICARTT files: 
 <br>
-V1-1
-Usage: ./alpaca-icartt-merge-v1-1.py 'input_directory/*.ict' 'output_filename_5min.txt' 'output_filename_hr.txt'
-<br>
 <br>
 V1-2
 Usage: ./alpaca-icartt-merge-v1-2.py 'input_directory/*.ict' 'output_filebase'
 'output_filebase' should be the file base name, the time resolution of the file will be added to the file base name as '-timeres.txt'
+<br>
+<br>
+V1-1
+Usage: ./alpaca-icartt-merge-v1-1.py 'input_directory/*.ict' 'output_filename_5min.txt' 'output_filename_hr.txt'
 </p>
 
 <p>
