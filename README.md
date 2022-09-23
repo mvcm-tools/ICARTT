@@ -15,6 +15,7 @@ For merging all ALPACA ICARTT files:
 <br>
 V1-2
 Usage: ./alpaca-icartt-merge-v1-2.py 'input_directory/*.ict' 'output_filebase'
+<br>
 'output_filebase' should be the file base name, the time resolution of the file will be added to the file base name as '-timeres.txt'
 <br>
 <br>
