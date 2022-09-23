@@ -319,7 +319,7 @@ df_merge.to_csv(fp_out_base+'-5min.txt', sep = '\t', na_rep = 'NaN', float_forma
 df_merge_hr.to_csv(fp_out_base+'-hr.txt', sep = '\t', na_rep = 'NaN', float_format='%.4f')
 
 # write data for filter samples
-ls[0].to_csv(fp_out_base+'-7am-7pm.txt', sep = '\t', na_rep = 'NaN', float_format='%.4f')
+ls[0].to_csv(fp_out_base+'-7am-7am.txt', sep = '\t', na_rep = 'NaN', float_format='%.4f')
 ls[1].to_csv(fp_out_base+'-930am-9am.txt', sep = '\t', na_rep = 'NaN', float_format='%.4f')
 ls[2].to_csv(fp_out_base+'-930am-5pm.txt', sep = '\t', na_rep = 'NaN', float_format='%.4f')
 ls[3].to_csv(fp_out_base+'-530pm-9am.txt', sep = '\t', na_rep = 'NaN', float_format='%.4f')
