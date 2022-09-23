@@ -301,10 +301,10 @@ for xi in range(0, len(start)):
     df = pd.DataFrame(index=days_index, columns=df_merge.columns.drop(['CTC_COFFEE_CH2O_ppbv', 'CTC_AERIS_CH2O_ppbv']))
     for xn in range(0,len(days)):
         if same_day[xi] == 'yes':
-            ser = df_merge[str(days[xn])+start[xi]:str(days[xn])+end[xi]].mean(axis=0)
+            ser = round(df_merge[str(days[xn])+start[xi]:str(days[xn])+end[xi]].mean(axis=0), 4)
             df.loc[days_index[xn], :] = ser
         else:
-            ser = df_merge[str(days[xn])+start[xi]:str(days[xn]+pd.Timedelta('1D'))+end[xi]].mean(axis=0)
+            ser = round(df_merge[str(days[xn])+start[xi]:str(days[xn]+pd.Timedelta('1D'))+end[xi]].mean(axis=0), 4)
             df.loc[days_index[xn], :] = ser
     ls.append(df)
     
